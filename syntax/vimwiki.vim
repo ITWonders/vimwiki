@@ -379,8 +379,10 @@ execute 'syn match VimwikiSubScriptT contained /'.g:vimwiki_char_subscript.'/'
 " Emoticons
 "syntax match VimwikiEmoticons /\%((.)\|:[()|$@]\|:-[DOPS()\]|$@]\|;)\|:'(\)/
 
+"let g:vimwiki_rxTodo = '\C\%(TODO:\|DONE:\|STARTED:\|FIXME:\|FIXED:\|XXX:\)'
 let g:vimwiki_rxTodo = '\C\%(TODO:\|DONE:\|STARTED:\|FIXME:\|FIXED:\|XXX:\)'
 execute 'syntax match VimwikiTodo /'. g:vimwiki_rxTodo .'/'
+
 " }}}
 
 " main syntax groups {{{
@@ -592,6 +594,7 @@ hi def link VimwikiNoExistsLinkCharT VimwikiNoExistsLinkT
 " -------------------------------------------------------------------------
 " Load syntax-specific functionality
 execute 'runtime! syntax/vimwiki_'.VimwikiGet('syntax').'_custom.vim'
+"execute 'runtime! syntax/knf.vim'
 " -------------------------------------------------------------------------
 
 " FIXME it now does not make sense to pretend there is a single syntax "vimwiki"
@@ -619,3 +622,6 @@ syntax spell toplevel
 
 let timeend = vimwiki#u#time(starttime)  "XXX
 call VimwikiLog_extend('timing',['syntax:scans',timescans],['syntax:regexloaded',time0],['syntax:beforeHLexisting',time01],['syntax:afterHLexisting',time02],['syntax:end',timeend])
+
+
+execute 'runtime! syntax/vimwiki_knf.vim'
